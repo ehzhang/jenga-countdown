@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>
+      Jenga Countdown!
+    </title>
+    <link href="style.css" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-2.2.2.min.js"
+      integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+      crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div id="timer">
+      <span id="minutes"></span>:<span id="seconds"></span>
+    </div>
+
+    <br>
+
+    <button id="button">
+      START
+    </button>
+
+    <br>
+
+  </body>
+
+  <script>
+    var started = false;
+    var time = 60;
+    var timeInc = 10;
+
+    updateTimer(time);
+
+    $('#button').click(function(e){
+
+      if (!started) {
+        $('#button').text("DONE");
+        setInterval(decrementTime, 1000);
+        started = true;
+      } else {
+        addTime(timeInc);
+      }
+
+    });
+
+    $('body').keyup(function(e){
+       if(e.keyCode == 32){
+
+        if (!started) {
+          $('#button').text("DONE");
+          setInterval(decrementTime, 1000);
+          started = true;
+        } else {
+          addTime(timeInc);
+        }
+
+       }
+    });
+
+    function decrementTime() {
+      // Update the timer
+      time--;
+      updateTimer(time);
+    }
+
+    function addTime(seconds) {
+      time+=timeInc;
+      updateTimer(time);
+
+      var e = $("<span class='plus'>+" + seconds + "</span>");
+
+      $('#timer').append(e);
+
+      setTimeout(function(){
+        e.addClass('fade');
+        setTimeout(function(){
+          e.remove();
+        },1000);
+      },10);
+    }
+
+    function updateTimer(seconds) {
+      if (seconds < 0) {
+        return;
+      }
+
+      var sec = seconds % 60;
+      var min = (seconds - sec) / 60;
+
+      if (sec < 10) {
+        // Pad 0
+        sec = "0" + sec;
+      }
+
+      if (seconds < timeInc) {
+        $('#timer').addClass('danger');
+      } else {
+        $('#timer').removeClass('danger');
+      }
+
+
+      $('#minutes').text(min);
+      $('#seconds').text(sec);
+    }
+
+  </script>
+</html>

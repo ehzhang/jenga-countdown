@@ -1,0 +1,71 @@
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  text-align: center;
+  position: relative;
+
+}
+
+#timer {
+  font-size: 10em;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+
+  margin-top: 1em;
+
+  color: rgba(0,0,0,.8);
+
+  transition-duration: 1s;
+}
+
+#timer.danger {
+  color: #e74c3c;
+}
+
+#timer .plus {
+  font-size: .3em;
+  position: absolute;
+
+  top: 1.5em;
+  right: -1.5em;
+
+  color: #2ecc71;
+
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+#timer .plus.fade {
+  top: 1em;
+  opacity: 0;
+}
+
+#button {
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: 1em;
+  background: #3498db;
+
+  color: white;
+
+  border: none;
+  border-radius: 100%;
+
+  width: 4em;
+  height: 4em;
+  line-height: 4em;
+}
+
+button:hover {
+  opacity: .9;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  background: #2980b9;
+  opacity: 1;
+}
